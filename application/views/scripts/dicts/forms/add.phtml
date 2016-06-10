@@ -1,0 +1,34 @@
+<form method="POST" action="/dicts/add/"  enctype="multipart/form-data">
+    <?=$this->element->group_id?>
+    <table>
+        <tr>
+            <td>
+                <?=$this->element->file->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->file?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?=$this->element->name->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->name?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->submit?></td>
+        </tr>
+    </table>
+</form>

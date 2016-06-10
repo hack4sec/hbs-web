@@ -1,0 +1,62 @@
+<br />
+<div class="buttonsBlock">
+    <button onclick="location.href='/tasks/add-group/'"><?=$this->translate('L_TASKS_GROUP_ADD')?></button>&nbsp;&nbsp;&nbsp;
+</div>
+<br />
+<?foreach($this->groups as $group):?>
+    <table class="workTable">
+        <tr>
+            <th colspan="4"> <?=$this->translate('L_TASKS_GROUP')?> &quot;<?=$group['name']?>&quot;</th>
+            <th><a href="/tasks/edit-group/id/<?=$group['id']?>"><?=$this->translate('L_EDIT')?></a></th>
+            <th><a id="deleteGroup<?=$group['id']?>" href="/tasks/delete-group/id/<?=$group['id']?>" onclick="return confirm('<?=$this->translate('L_WANT_DEL')?> <?=$group['name']?> ?')"><?=$this->translate('L_DEL')?></a></th>
+            <th><a href="/tasks/add/group_id/<?=$group['id']?>"><?=$this->translate('L_TASK_ADD')?></a></th>
+        </tr>
+        <tr>
+            <th><?=$this->translate('L_NAME')?></th>
+            <th><?=$this->translate('L_TYPE')?></th>
+            <th><?=$this->translate('L_SOURCE')?></th>
+            <th colspan="4"><?=$this->translate('L_ACTIONS')?></th>
+        </tr>
+        <?foreach($group->getTasks() as $task):?>
+            <tr>
+                <td><?=$task['name']?></td>
+                <td>
+                    <?
+                    switch ($task['type']) {
+                        case 'mask':
+                            print $this->translate('L_MASK');
+                            break;
+                        case 'dict':
+                            print $this->translate('L_DICT');
+                            break;
+                        case 'dictmask':
+                            print $this->translate('L_HYBRIDE_D_M');
+                            break;
+                        case 'maskdict':
+                            print $this->translate('L_HYBRIDE_M_D');
+                            break;
+                        default:
+                            print "Unknown";
+                            break;
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?=$task->getSource()?>
+                    <?if($task->rule):?>
+                        (<?=$this->translate('L_RULES_LIST')?> &quot;<?=$this->rules[$task->rule]?>&quot;)
+                    <?endif?>
+                </td>
+                <td colspan="4">
+                    <a href="/tasks/edit/id/<?=$task['id']?>"><?=$this->translate('L_EDIT')?></a>&nbsp;
+                    <a id="deleteTask<?=$task['id']?>" href="/tasks/delete/id/<?=$task['id']?>" onclick="return confirm('<?=$this->translate('L_WANT_DEL')?> <?=$task['name']?> ?')">
+                        <?=$this->translate('L_DELETE')?>
+                    </a>&nbsp;
+                </td>
+            </tr>
+        <?endforeach;?>
+    </table>
+    <br/>
+<?endforeach;?>
+<br/>
+

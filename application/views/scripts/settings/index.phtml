@@ -1,0 +1,16 @@
+<br/>
+<div class="buttonsBlock">
+    <button onclick="location.href='/settings/phpinfo/'">phpinfo</button>&nbsp;&nbsp;&nbsp;
+</div>
+<br/>
+<table class="workTable">
+    <tr>
+        <th colspan="2"><?=$this->translate('L_SETTINGS')?></th>
+    </tr>
+    <?foreach($this->settings as $setting => $value):?>
+        <tr>
+            <td><?=$setting?></td>
+            <td><?=$value?></td>
+        </tr>
+    <?endforeach;?>
+</table><br/>

@@ -1,0 +1,135 @@
+a, a:visited {
+    color: #000000;
+}
+body {
+    background-color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+.menuBlock {
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    background-color: #F5F5F5;
+    vertical-align: top;
+    text-align: center;
+}
+.menuBlock a {
+    text-decoration: none;
+    font-family: Tahoma;
+    font-size: 11pt;
+}
+.titleBlock {
+    width: 100%;
+    background-color: #F5F5F5;
+    vertical-align: top;
+    border: 1px solid #000000;
+    font-family: Verdana;
+    font-size: 13pt;
+    font-weight: bold;
+}
+.versionBlock {
+    background-color: #B0C4DE;
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    vertical-align: top;
+    text-align: right;
+    font-family: Tahoma;
+    font-size: 8pt;
+}
+.buttonsBlock {
+    margin: 5px;
+    text-align: left;
+    width: 90%;
+}
+.filtersBlock {
+    width:90%;
+    margin: 0;
+    padding: 0;
+}
+.filtersBlock td {
+    width:100%;
+    background-color: #F5F5F5;
+    border: 1px solid #000000;
+    vertical-align: top;
+    font-family: Verdana;
+    font-size: 11pt;
+    padding-left: 5px;
+}
+.filtersBlock td.title {
+    background-color: #B0C4DE;
+    vertical-align: top;
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+}
+.workTable {
+    width:90%;
+    margin: 0;
+    padding: 0;
+}
+.workFormTable {
+    width: auto;
+}
+.workFormTable td{
+    vertical-align: top;
+}
+.workFormTable input[type="text"] {
+    width: 100%;
+}
+.workTable th {
+    background-color: #B0C4DE;
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    vertical-align: top;
+    font-family: Verdana;
+    font-size: 9pt;
+}
+.workTable tr {
+    width:100%
+}
+.workTable td {
+    border: 1px solid #000000;
+    vert-align: top;
+    font-family: Verdana;
+    font-size: 9pt;
+}
+
+.workLargeAddTable {
+    width: 80%;
+}
+.workLargeAddTable table, .workLargeAddTable select {
+    width: 100%;
+}
+.error {
+    background-color: lightpink !important;
+}
+
+.taskwait {
+    background-color: #fcefa1 !important;
+}
+
+.taskwork {
+    background-color: lightgreen !important;
+}
+
+.taskstop {
+    background-color: #F78181 !important;
+}
+.taskdone {
+    background-color: #F5F5F5;
+}
+.stdout_textarea {
+    width:100%;
+    height:100%;
+}
+.formHints {
+    text-align: left;
+}
+
+input[type="text"], textarea {
+    background-color: #F5F5F5;
+}

@@ -1,0 +1,16 @@
+<form method="POST" action="/rules/edit/"  enctype="multipart/form-data">
+    <?=$this->element->id?>
+    <table>
+        <tr>
+            <td>
+                <?=$this->element->name->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->name?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->submit?></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,21 @@
+<br/>
+<div class="buttonsBlock">
+    <button onclick="location.href='/rules/add/'"><?=$this->translate('L_RULES_LIST_ADD')?></button>&nbsp;&nbsp;&nbsp;
+</div>
+<br/>
+<table class="workTable">
+    <tr>
+        <th><?=$this->translate('L_LIST_NAME')?></th>
+        <th><?=$this->translate('L_RULES_COUNT')?></th>
+        <th colspan="2"><?=$this->translate('L_ACTIONS')?></th>
+    </tr>
+<?foreach ($this->list as $ruleList):?>
+    <tr>
+        <td><?=$ruleList->name?></td>
+        <td><?=$ruleList->count?></td>
+
+        <td><a href="/rules/edit/id/<?=$ruleList->id?>/"><?=$this->translate('L_EDIT_2')?></a></td>
+        <td><a id="deleteRules<?=$ruleList->id?>" href="/rules/delete/id/<?=$ruleList->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_DELETE');?> <?=$ruleList->name?>?')"><?=$this->translate('L_DELETE');?></a></td>
+    </tr>
+<?endforeach;?>
+</table>

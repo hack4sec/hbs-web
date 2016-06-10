@@ -1,0 +1,47 @@
+<br />
+<div class="buttonsBlock">
+    <button onclick="location.href='/stats/found/'"><?=$this->translate('L_DOWNLOAD_FOUNDED_PASSWORDS')?></button>&nbsp;&nbsp;&nbsp;
+</div>
+<br/>
+<table class="workTable">
+    <tr>
+        <th colspan="2"><?=$this->translate('L_STAT')?></th>
+    </tr>
+    <tr>
+        <td><?=$this->translate('L_HASHLISTS')?>:</td>
+        <td><?=$this->stats['hashlists']?></td>
+    </tr>
+    <tr>
+        <td><?=$this->translate('L_HASHES_ALL')?>:</td>
+        <td><?=$this->stats['hashes_all']?></td>
+    </tr>
+    <tr>
+        <td><?=$this->translate('L_CRACKED_OF_THEM')?>:</td>
+        <td>
+            <?=$this->stats['hashes_cracked']?> (<?=round($this->stats['hashes_cracked']/$this->stats['hashes_all']*100)?>%)
+        </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+        <td><?=$this->translate('L_DICTS_ALL')?>:</td>
+        <td><?=$this->stats['dicts']?></td>
+    </tr>
+    <tr>
+        <td><?=$this->translate('L_GROUPS')?>:</td>
+        <td><?=$this->stats['dicts_groups']?></td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+        <td><?=$this->translate('L_TASKS_TEMPLATES_ALL')?>:</td>
+        <td><?=$this->stats['tasks']?></td>
+    </tr>
+    <tr>
+        <td><?=$this->translate('L_TASKS_WORKS_WAIT')?>:</td>
+        <td><?=$this->stats['task_works_wait']?></td>
+    </tr>
+    <tr>
+        <td><?=$this->translate('L_TASKS_WORKS_DONE')?>:</td>
+        <td><?=$this->stats['task_works_done']?></td>
+    </tr>
+</table>
+<br/>

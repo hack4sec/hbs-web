@@ -1,0 +1,15 @@
+<form method="POST" action="/dicts/add-group/">
+    <table>
+        <tr>
+            <td>
+                <?=$this->element->name->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->name?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->submit?></td>
+        </tr>
+    </table>
+</form>

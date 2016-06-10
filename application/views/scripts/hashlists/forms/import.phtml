@@ -1,0 +1,32 @@
+<form method="POST" action="/hashlists/import/">
+    <?=$this->element->id?>
+    <table>
+        <tr>
+            <td>
+                <?=$this->element->salts->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->salts?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?=$this->element->founded->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->founded?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?=$this->element->delimiter->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->delimiter?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->submit?></td>
+        </tr>
+    </table>
+</form>

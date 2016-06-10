@@ -1,0 +1,33 @@
+<br/>
+<div class="buttonsBlock">
+    <button onclick="location.href='/dicts/add-group/'"><?=$this->translate('L_DICTS_GROUP_ADD')?></button>&nbsp;&nbsp;&nbsp;
+</div>
+<br/>
+<?foreach($this->groups as $group):?>
+    <table class="workTable">
+        <tr>
+            <th colspan="4">
+                <?=$this->translate('L_DICTS_GROUP')?> &quot;<?=$group['name']?>&quot; (<a href="/dicts/add/group_id/<?=$group['id']?>"><?=$this->translate('L_DICT_ADD')?></a>)
+            </th>
+            <th><a href="/dicts/edit-group/id/<?=$group['id']?>"><?=$this->translate('L_EDIT')?></a></th>
+            <th><a id="deleteGroup<?=$group['id']?>" href="/dicts/delete-group/id/<?=$group['id']?>" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> <?=$group['name']?> ?')"><?=$this->translate('L_DELETE')?></a></th>
+        </tr>
+        <?foreach($group->getDicts() as $dict):?>
+            <tr>
+                <td><?=$dict['name']?></td>
+                <td><?=$this->Bytes($dict['size'])?></td>
+                <td><?=number_format($dict['count'], 0, ".", " ")?> <?=$this->translate('L_WORDS')?></td>
+                <td><?=$dict['comment']?></td>
+                <td><a href="/dicts/edit/id/<?=$dict['id']?>"><?=$this->translate('L_EDIT')?></a></td>
+                <td>
+                    <a id="deleteDict<?=$dict['id']?>" href="/dicts/delete/id/<?=$dict['id']?>" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> <?=$dict['name']?> ?')">
+                        <?=$this->translate('L_DELETE')?>
+                    </a>
+                </td>
+            </tr>
+        <?endforeach;?>
+    </table>
+    <br/>
+<?endforeach;?>
+<br/>
+

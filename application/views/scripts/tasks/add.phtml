@@ -1,0 +1,17 @@
+<?if ($this->form):?>
+    <br/>
+    <table class="workTable workFormTable workLargeAddTable">
+        <tr>
+            <th><?=$this->translate('L_TASK_ADD_IN_GROUP')?> &quot;<?=$this->group['name']?>&quot;</th>
+        </tr>
+        <tr>
+            <td><?=$this->form->render()?></td>
+        </tr>
+    </table>
+<?else:?>
+    <h3><?=$this->translate('L_TASK_TYPE')?>:</h3>
+    <a href="/tasks/add/group_id/<?=$this->group_id?>/type/dict/"><?=$this->translate('L_DICT')?></a><br/>
+    <a href="/tasks/add/group_id/<?=$this->group_id?>/type/mask/"><?=$this->translate('L_MASK')?></a><br/>
+    <a href="/tasks/add/group_id/<?=$this->group_id?>/type/dictmask/"><?=$this->translate('L_HYBRIDE_D_M_2')?></a><br/>
+    <a href="/tasks/add/group_id/<?=$this->group_id?>/type/maskdict/"><?=$this->translate('L_HYBRIDE_M_D_2')?></a><br/>
+<?endif?>

@@ -1,0 +1,32 @@
+<form method="POST" action="/hashlists/in/"  enctype="multipart/form-data">
+    <?=$this->element->id?>
+    <table>
+        <tr>
+            <td>
+                <?=$this->element->file->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->file?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?=$this->element->have_salts->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->have_salts?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?=$this->element->delimiter->getLabel()?>
+            </td>
+            <td>
+                <?=$this->element->delimiter?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->submit?></td>
+        </tr>
+    </table>
+</form>

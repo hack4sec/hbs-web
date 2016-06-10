@@ -1,0 +1,205 @@
+<br/><br/>
+<div class="buttonsBlock">
+    <button onclick="location.href='/work-tasks/add/'"><?=$this->translate('L_WORK_TASK_ADD')?></button>&nbsp;&nbsp;&nbsp;
+    <button onclick="startAllWorkTasks()"><?=$this->translate('L_START_ALL')?></button>&nbsp;&nbsp;&nbsp;
+    <button onclick="stopAllWorkTasks()"><?=$this->translate('L_STOP_ALL')?></button>&nbsp;&nbsp;&nbsp;
+</div>
+
+<table class="filtersBlock">
+    <tr>
+        <td class="title">
+            <b><?=$this->translate('L_FILTERS')?>: </b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?=$this->translate('L_HASH_LIST')?>:
+            <select id="filter_hashlist" name="filter_hashlist" onchange="applyFiltersWorkTasksList()">
+                <option value="0" <?if ($this->filter_hashlist == "0" ):?>selected<?endif?>>-------</option>
+                <?foreach($this->hashlistsModel->getList() as $id => $hashlist):?>
+                    <option value="<?=$id?>" <?if ($this->filter_hashlist == $id ):?>selected<?endif?>><?=$hashlist?></option>
+                <?endforeach?>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?=$this->translate('L_STATUS')?>:
+            <input type="checkbox" id="filter_done" name="filter_done" <?if (in_array("filter_done", $this->filter_status)):?>checked="true"<?endif?> onchange="applyFiltersWorkTasksList()"> <?=$this->translate('L_DONE')?>
+            <input type="checkbox" id="filter_wait" name="filter_wait" <?if (in_array("filter_wait", $this->filter_status)):?>checked="true"<?endif?> onchange="applyFiltersWorkTasksList()"> <?=$this->translate('L_WAIT')?>
+            <input type="checkbox" id="filter_stop" name="filter_stop" <?if (in_array("filter_stop", $this->filter_status)):?>checked="true"<?endif?> onchange="applyFiltersWorkTasksList()"> <?=$this->translate('L_STOPED')?>
+            <input type="checkbox" id="filter_work" name="filter_work" <?if (in_array("filter_work", $this->filter_status)):?>checked="true"<?endif?> onchange="applyFiltersWorkTasksList()"> <?=$this->translate('L_IN_WORK')?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="resetFilters()"><?=$this->translate('L_FILTERS_RESET')?></button>
+        </td>
+
+    </tr>
+</table>
+
+
+<br/>
+<div id="workTasksMainContent">
+    <table id="workTasksTable" class="workTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>#</th>
+            <th><?=$this->translate('L_HASH_LIST')?></th>
+            <th><?=$this->translate('L_TASK')?></th>
+            <th><?=$this->translate('L_PRIORITY')?></th>
+            <th><?=$this->translate('L_STATUS')?></th>
+            <th><?=$this->translate('L_PROCESS')?></th>
+            <th><?=$this->translate('L_TIME')?></th>
+            <th><?=$this->translate('L_PROGRESS')?></th>
+            <th><?=$this->translate('L_GPU_T')?></th>
+            <th><?=$this->translate('L_HASHES')?></th>
+            <th>stderr</th>
+            <th><?=$this->translate('L_ACTIONS')?></th>
+        </tr>
+
+
+
+        <?foreach ($this->workTasks as $workTask):?>
+            <?$task = $workTask->getTask();?>
+            <tr id="wt<?=$workTask->id?>" class="
+                 hashlist<?=$workTask->hashlist_id?>
+                 task<?=$workTask->status?>
+                 "
+            >
+                <td><?=$workTask->id?></td>
+                <td><?=$this->hashlistsModel->get($workTask->hashlist_id)->name?></td>
+                <td>
+                    [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?>
+                </td>
+                <td>
+                    <?if($workTask->status != 'done'):?>
+                        <a href="#" id="priorityLink<?=$workTask->id?>" onclick="changeTaskPriority(<?=$workTask->id?>, <?=$workTask->priority?>)">
+                            <?=$workTask->priority?>
+                        </a>
+                    <?else:?>
+                        <?=$workTask->priority?>
+                    <?endif?>
+                </td>
+                <td id="wt<?=$workTask->id?>status">
+                    <?switch ($workTask->status) {
+                        case 'wait':
+                            print $this->translate('L_WAIT');
+                            break;
+                        case 'work':
+                            print $this->translate('L_IN_WORK');
+                            break;
+                        case 'go_stop':
+                            print $this->translate('L_STOPPING');;
+                            break;
+                        case 'stop':
+                            print $this->translate('L_STOPED');
+                            break;
+                        case 'done':
+                            print $this->translate('L_DONE');
+                            break;
+                    }?>
+                </td>
+                <td id="wt<?=$workTask->id?>process">
+                    <?if($workTask->status == 'work'):?>
+                        <?switch ($workTask->process_status) {
+                            case 'starting':
+                                print $this->translate('L_START_HC');
+                                break;
+                            case 'work':
+                                print $this->translate('L_IN_WORK');
+                                break;
+                            case 'compilehybride':
+                                print $this->translate('L_DICT_COMPILE');
+                                break;
+                            case 'compilecommand':
+                                print $this->translate('L_COMMAND_BUILD');
+                                break;
+                            case 'loadhashes':
+                                print $this->translate('L_FOUND_HASHES_LOAD');
+                                break;
+                            case 'buildhashlist':
+                                print $this->translate('L_HASHLIST_COMPILE');
+                                break;
+                            case 'preparedicts':
+                                print $this->translate('L_DICTS_PREPARE');
+                                break;
+
+                        }?>
+                    <?else:?>
+                        ---
+                    <?endif?>
+                </td>
+                <td id="wt<?=$workTask->id?>time">
+                    <nobr>
+                        <?if($workTask->status == 'work'):?>
+                            <?if ($workTask->getTime() != 'n/a'):?>
+                                <span title="<?=$workTask->getTime()['all']?>/<?=$workTask->getTime()['now']?>/<?=$workTask->getTime()['need']?>">
+                                <?=$workTask->getTime()['need']?>
+                            </span>
+                            <?else:?>
+                                <?=$workTask->getTime()?>
+                            <?endif?>
+                            <br/>
+                        <?else:?>
+                            <?=$workTask->getWorkTime()?>
+                        <?endif?>
+
+                    </nobr>
+                </td>
+                <td id="wt<?=$workTask->id?>progress">
+                    <?=$workTask->getProgress()?>
+                </td>
+                <td id="wt<?=$workTask->id?>temp">
+                    <?=$workTask->hc_temp?>&deg;C
+                </td>
+                <td id="wt<?=$workTask->id?>hashes">
+                    <?if($workTask->status == 'work' and $workTask->getHcRechash() != 'n/a'):?>
+                        <span title="<?=number_format($workTask->getHcRechash()[1], 0, ",", " ")?> / <?=number_format(($workTask->getHcRechash()[1] - $workTask->getHcRechash()[0]), 0, ",", " ")?> / <?=number_format($workTask->getHcRechash()[0], 0, ",", " ")?>">
+                            <nobr><?=number_format($workTask->getHcRechash()[0], 0, ",", " ")?></nobr>
+                        </span>
+                    <?else:?>
+                        <span title="<?=number_format($workTask->uncracked_before, 0, ",", " ")?> / <?=number_format($workTask->uncracked_after, 0, ",", " ")?> / <?=number_format($workTask->uncracked_before-$workTask->uncracked_after, 0, ",", " ")?>">
+                            <nobr><?=number_format($workTask->uncracked_before-$workTask->uncracked_after, 0, ",", " ")?></nobr>
+                        </span>
+                    <?endif?>
+                </td>
+                <td <?if(strlen($workTask->stderr)):?>class="error"<?endif?>>
+                    <?=$workTask->stderr?>
+                </td>
+                <td  id="taskActions<?=$workTask['id']?>">
+                    <a id="deleteWorkTask<?=$workTask->id?>" href="/work-tasks/delete/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
+                        &nbsp;<?=$this->translate('L_DELETE')?>
+                    </a>
+                    <?if(in_array($workTask->status, ['work', 'wait'])):?>
+                        <a id="stopWorkTask<?=$workTask->id?>" href="/work-tasks/stop/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_STOP')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
+                            &nbsp;<?=$this->translate('L_TO_STOP')?>
+                        </a>
+                    <?endif?>
+                    <?if($workTask->status == 'stop'):?>
+                        <a id="resumeWorkTask<?=$workTask->id?>" href="/work-tasks/resume/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_RESUME')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
+                            &nbsp;<?if(!strlen($workTask->session_name)):?><?=$this->translate('L_START')?><?else:?><?=$this->translate('L_RESUME')?><?endif?>
+                        </a>
+                    <?endif?>
+                    <?if(strlen($workTask->path_stdout)):?>
+                        <a id="downloadStdoutWorkTask<?=$workTask->id?>" onclick="createDialogBox('stdout', '/work-tasks/stdout/id/<?=$workTask->id?>/', 600, 500);return false;" href="/work-tasks/stdout/id/<?=$workTask->id?>/" >
+                            &nbsp;stdout
+                        </a>
+                    <?endif?>
+                    <?if(strlen(trim($workTask->err_output))):?>
+                        <a href="/work-tasks/errors/id/<?=$workTask->id?>/"><?=$this->translate('L_RESULT_ERRORS')?></a>
+                    <?endif?>
+                </td>
+            </tr>
+        <?endforeach;?>
+    </table>
+</div>
+
+<script>
+    $.cookie('getCurrentWorkTaskId', getCurrentWorkTaskId());
+    applyFiltersWorkTasksList()
+    $( document ).ready(function() {
+        var a = setInterval('checkCurrentWorkTask()', 2000)
+        var b = setInterval('refreshCurrentWorkTaskData()', 2000)
+    });
+</script>
