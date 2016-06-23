@@ -77,6 +77,7 @@ class Hashlists extends Common
                 $tmpData = '';
             } else {
                 $tmpData .= $symbol;
+                $tmpData = trim($tmpData);
             }
         }
         if (strlen($tmpData)) {
