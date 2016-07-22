@@ -9,25 +9,20 @@
         <th><?=$this->translate('L_CRACKED')?></th>
         <th><?=$this->translate('L_NON_CRACKED')?></th>
         <th><?=$this->translate('L_ALG')?></th>
+        <th><?=$this->translate('L_STATUS')?></th>
         <th colspan="6"><?=$this->translate('L_ACTIONS')?></th>
     </tr>
 <?foreach ($this->list as $hashlist):?>
     <tr>
         <td><?=$hashlist->name?></td>
-        <td>
-            <?=$hashlist->getCounts()['cracked']?>
-            <?if ($hashlist->getCounts()['not_cracked']+$hashlist->getCounts()['cracked']):?>
-            (<?=
-                round(
-                    $hashlist->getCounts()['cracked'] / ($hashlist->getCounts()['not_cracked']+$hashlist->getCounts()['cracked']) * 100,
-                    0
-                )
-            ?>%
-            )
-            <?endif?>
+        <td id="hashlist<?=$hashlist->id?>cracked">
+            <?=$hashlist->getCounts()['cracked']?> (<?=$hashlist->getCounts()['cracked_percents']?>%)
         </td>
-        <td><?=$hashlist->getCounts()['not_cracked']?></td>
+        <td id="hashlist<?=$hashlist->id?>not_cracked">
+            <?=$hashlist->getCounts()['not_cracked']?> (<?=$hashlist->getCounts()['not_cracked_percents']?>%)
+        </td>
         <td><?=$hashlist->getAlg()?></td>
+        <td id="hashlist<?=$hashlist->id?>status"><?=$this->translate('L_HASHLIST_STATUS_' . strtoupper($hashlist->status))?></td>
 
         <td><a href="/hashlists/edit/id/<?=$hashlist->id?>/"><?=$this->translate('L_EDIT_2')?></a></td>
         <td><a id="deleteHashlist<?=$hashlist->id?>" href="/hashlists/delete/id/<?=$hashlist->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> <?=$hashlist->name?>?')"><?=$this->translate('L_DELETE')?></a></td>
@@ -43,3 +38,6 @@
     </tr>
 <?endforeach;?>
 </table>
+<script>
+    var hlInterval = setInterval(refreshHashlistsData, 2000)
+</script>

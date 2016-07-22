@@ -297,3 +297,14 @@ function applyFiltersWorkTasksList() {
     $.cookie('filter_status', JSON.stringify(filters_arr), {expires: 100})
     $.cookie('filter_hashlist', jQuery("#filter_hashlist").val(), {expires: 100})
 }
+
+function refreshHashlistsData() {
+    $.getJSON( "/hashlists/get-hashlists-json-data/", function( data ) {
+        for (id in data) {
+            var ncPercents = data[id]['cracked'] / (data[id]['not_cracked'] + data[id]['cracked']) * 100;
+            $("#hashlist" + id + "cracked").html(data[id]['cracked'] + " (" + data[id]['cracked_percents'] + "%)")
+            $("#hashlist" + id + "not_cracked").html(data[id]['not_cracked'] + " (" + data[id]['not_cracked_percents'] + "%)")
+            $("#hashlist" + id + "status").html(data[id]['status'])
+        }
+    });
+}

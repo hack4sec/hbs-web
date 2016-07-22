@@ -16,7 +16,7 @@ class HashlistsController extends Zend_Controller_Action
         $this->view->settings = Utils::getSettings();
         $form = new Forms_Hashlists_Add();
         if ($this->_request->isPost() and $form->isValid($_POST) and $form->file->receive()) {
-            $_POST['filename'] = $form->file->getFileName(NULL, false);
+            $_POST['filepath'] = $form->file->getFileName(NULL, false);
             $this->_model->add($_POST);
             $this->redirect('/hashlists/');
             exit;
@@ -48,7 +48,7 @@ class HashlistsController extends Zend_Controller_Action
         $form->setId($this->_getParam('id'));
         $this->view->settings = Utils::getSettings();
         if ($this->_request->isPost() and $form->isValid($_POST) and $form->file->receive()) {
-            $_POST['filename'] = $form->file->getFileName(NULL, false);
+            $_POST['filepath'] = $form->file->getFileName(NULL, false);
             $this->_model->in($_POST);
             $this->redirect('/hashlists/');
         } else {
@@ -91,5 +91,24 @@ class HashlistsController extends Zend_Controller_Action
 
     public function errorsAction() {
         die(nl2br($this->_model->get($this->_getParam('id'))->errors));
+    }
+
+    public function getHashlistsJsonDataAction() {
+        $t = Zend_Registry::get('Zend_Translate');
+
+        $result = [];
+        $hashlists = $this->_model->fetchAll(null, "name ASC");
+        foreach ($hashlists as $hashlist) {
+            $result[$hashlist->id] = [
+                'id' => $hashlist->id,
+                'cracked' => $hashlist->getCounts()['cracked'],
+                'not_cracked' => $hashlist->getCounts()['not_cracked'],
+                'cracked_percents' => $hashlist->getCounts()['cracked_percents'],
+                'not_cracked_percents' => $hashlist->getCounts()['not_cracked_percents'],
+                'status' => $t->translate('L_HASHLIST_STATUS_' . strtoupper($hashlist->status))
+            ];
+        }
+
+        $this->_helper->json($result);
     }
 }

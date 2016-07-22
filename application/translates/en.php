@@ -134,5 +134,16 @@ return [
     'L_NO_ERRORS' => "No errors",
     'L_DEL' => "Delete",
     'L_TASK_TYPE' => "Тype of task",
-    'L_HASHES' => "Hashes"
+    'L_HASHES' => "Hashes",
+    'L_WAITOUTPARSE' => 'Wait outfile parsing',
+    'L_OUTPARSING' => 'Outfile parsing now',
+    'L_HASHLIST_STATUS_WAIT' => 'Parsing wait',
+    'L_HASHLIST_STATUS_PARSING' => 'Parsing',
+    'L_HASHLIST_STATUS_ERRPATH' => 'Error: file not exists, reload list please',
+    'L_HASHLIST_STATUS_SORTING' => 'Sorting',
+    'L_HASHLIST_STATUS_PREPAREDB' => 'Prepare for put in DB',
+    'L_HASHLIST_STATUS_PUTINDB' => 'Putting in DB',
+    'L_HASHLIST_STATUS_SEARCHFOUND' => 'Search already found hashes',
+    'L_HASHLIST_STATUS_READY' => 'Ready to work',
+
 ];

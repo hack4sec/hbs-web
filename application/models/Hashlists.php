@@ -109,17 +109,26 @@ class Hashlists extends Common
 
     public function add($data)
     {
+        $config = Zend_Registry::get('config');
         $list = $this->createRow([
             'name' => $data['name'],
             'alg_id' => $data['alg_id'],
+            'delimiter' => $data['delimiter'],
+            'have_salts' => $data['have_salts'],
+            'parsed' => 0,
+            'tmp_path' => "{$config->paths->storage->tmp}/{$data['filepath']}",
         ]);
         $list->save();
-        $this->_loadInListFromFile($list, $data);
+        //$this->_loadInListFromFile($list, $data);
     }
 
     public function in($data) {
         $list = $this->get($data['id']);
-        $this->_loadInListFromFile($list, $data);
+        $list->parsed = 0;
+        $config = Zend_Registry::get('config');
+        $list->tmp_path = "{$config->paths->storage->tmp}/{$data['filepath']}";
+        $list->save();
+        //$this->_loadInListFromFile($list, $data);
     }
 
     public function import($listId, $founded) {
