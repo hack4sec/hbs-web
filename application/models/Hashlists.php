@@ -110,25 +110,29 @@ class Hashlists extends Common
     public function add($data)
     {
         $config = Zend_Registry::get('config');
+
+        $randomName = md5(time() . rand(1, 1000000));
+        rename("{$config->paths->storage->tmp}/{$data['filepath']}", "{$config->paths->storage->tmp}/$randomName");
+
         $list = $this->createRow([
             'name' => $data['name'],
             'alg_id' => $data['alg_id'],
             'delimiter' => $data['delimiter'],
             'have_salts' => $data['have_salts'],
             'parsed' => 0,
-            'tmp_path' => "{$config->paths->storage->tmp}/{$data['filepath']}",
+            'tmp_path' => "{$config->paths->storage->tmp}/$randomName",
         ]);
         $list->save();
-        //$this->_loadInListFromFile($list, $data);
     }
 
     public function in($data) {
         $list = $this->get($data['id']);
         $list->parsed = 0;
         $config = Zend_Registry::get('config');
-        $list->tmp_path = "{$config->paths->storage->tmp}/{$data['filepath']}";
+        $randomName = md5(time() . rand(1, 1000000));
+        rename("{$config->paths->storage->tmp}/{$data['filepath']}", "{$config->paths->storage->tmp}/$randomName");
+        $list->tmp_path = "{$config->paths->storage->tmp}/$randomName";
         $list->save();
-        //$this->_loadInListFromFile($list, $data);
     }
 
     public function import($listId, $founded) {
