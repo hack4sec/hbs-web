@@ -108,50 +108,8 @@ class WorkTasksController extends Zend_Controller_Action
             $timeAll = $timeNeed = 'n/a';
         }
 
-        switch ($workTask->status) {
-            case 'wait':
-                $status = $t->translate("L_WAIT");
-                break;
-            case 'work':
-                $status = $t->translate("L_IN_WORK");
-                break;
-            case 'go_stop':
-                $status = $t->translate("L_STOPPING");
-                break;
-            case 'stop':
-                $status = $t->translate("L_STOPED");
-                break;
-            case 'done':
-                $status = $t->translate("L_DONE");
-                break;
-        }
-
-        switch ($workTask->process_status) {
-            case 'starting':
-                $procStatus = $t->translate("L_START_HC");
-                break;
-            case 'work':
-                $procStatus = $t->translate("L_IN_WORK");
-                break;
-            case 'compilehybride':
-                $procStatus = $t->translate("L_DICT_COMPILE");
-                break;
-            case 'compilecommand':
-                $procStatus = $t->translate("L_COMMAND_BUILD");
-                break;
-            case 'loadhashes':
-                $procStatus = $t->translate("L_FOUND_HASHES_LOAD");
-                break;
-            case 'buildhashlist':
-                $procStatus =  $t->translate("L_HASHLIST_COMPILE");
-                break;
-            case 'preparedicts':
-                $procStatus = $t->translate("L_DICTS_PREPARE");
-                break;
-            default:
-                $procStatus = '';
-                break;
-        }
+        $status = $t->translate('L_WT_STATUS_' . strtoupper($workTask->status));
+        $procStatus = $t->translate('L_WT_PROCESS_STATUS_' . strtoupper($workTask->process_status));
 
         $data = [
             'status' => $status,

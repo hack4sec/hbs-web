@@ -82,56 +82,11 @@
                     <?endif?>
                 </td>
                 <td id="wt<?=$workTask->id?>status">
-                    <?switch ($workTask->status) {
-                        case 'wait':
-                            print $this->translate('L_WAIT');
-                            break;
-                        case 'work':
-                            print $this->translate('L_IN_WORK');
-                            break;
-                        case 'go_stop':
-                            print $this->translate('L_STOPPING');;
-                            break;
-                        case 'stop':
-                            print $this->translate('L_STOPED');
-                            break;
-                        case 'done':
-                            print $this->translate('L_DONE');
-                            break;
-                        case 'waitoutparse':
-                            print $this->translate('L_WAITOUTPARSE');
-                            break;
-                        case 'outparsing':
-                            print $this->translate('L_OUTPARSING');
-                            break;
-                    }?>
+                    <?=$this->translate('L_WT_STATUS_' . strtoupper($workTask->status))?>
                 </td>
                 <td id="wt<?=$workTask->id?>process">
                     <?if($workTask->status == 'work'):?>
-                        <?switch ($workTask->process_status) {
-                            case 'starting':
-                                print $this->translate('L_START_HC');
-                                break;
-                            case 'work':
-                                print $this->translate('L_IN_WORK');
-                                break;
-                            case 'compilehybride':
-                                print $this->translate('L_DICT_COMPILE');
-                                break;
-                            case 'compilecommand':
-                                print $this->translate('L_COMMAND_BUILD');
-                                break;
-                            case 'loadhashes':
-                                print $this->translate('L_FOUND_HASHES_LOAD');
-                                break;
-                            case 'buildhashlist':
-                                print $this->translate('L_HASHLIST_COMPILE');
-                                break;
-                            case 'preparedicts':
-                                print $this->translate('L_DICTS_PREPARE');
-                                break;
-
-                        }?>
+                        <?=$this->translate('L_WT_PROCESS_STATUS_' . strtoupper($workTask->process_status))?>
                     <?else:?>
                         ---
                     <?endif?>
