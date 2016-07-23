@@ -158,4 +158,6 @@ return [
     'L_WT_PROCESS_STATUS_BUILDHASHLIST' => 'Hashlist building',
     'L_WT_PROCESS_STATUS_PREPAREDICTS' => 'Dicts prepare',
     'L_CREATE_STOPPED' => 'Create stopped',
+    'L_HIDE' => 'Hide',
+    'L_WANT_HIDE' => 'Are you really want to hide',
 ];

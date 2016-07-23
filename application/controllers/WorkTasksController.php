@@ -39,6 +39,11 @@ class WorkTasksController extends Zend_Controller_Action
         $this->redirect('/work-tasks/');
     }
 
+    public function hideAction() {
+        $this->_model->get($this->_getParam('id'))->hide();
+        $this->redirect('/work-tasks/');
+    }
+
     public function resumeAction() {
         $this->_model->get($this->_getParam('id'))->resume();
         $this->redirect('/work-tasks/');

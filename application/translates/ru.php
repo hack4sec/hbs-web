@@ -160,4 +160,6 @@ return [
     'L_WT_PROCESS_STATUS_BUILDHASHLIST' => 'Построение хеш-листа',
     'L_WT_PROCESS_STATUS_PREPAREDICTS' => 'Подготовка словарей',
     'L_CREATE_STOPPED' => 'Создать остановленной',
+    'L_HIDE' => 'Скрыть',
+    'L_WANT_HIDE' => 'Вы действительно хотите скрыть',
 ];

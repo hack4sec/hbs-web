@@ -61,6 +61,9 @@
 
 
         <?foreach ($this->workTasks as $workTask):?>
+            <?if ($workTask->hide) {
+                continue;
+            }?>
             <?$task = $workTask->getTask();?>
             <tr id="wt<?=$workTask->id?>" class="
                  hashlist<?=$workTask->hashlist_id?>
@@ -129,12 +132,19 @@
                     <?=$workTask->stderr?>
                 </td>
                 <td  id="taskActions<?=$workTask['id']?>">
-                    <a id="deleteWorkTask<?=$workTask->id?>" href="/work-tasks/delete/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
-                        &nbsp;<?=$this->translate('L_DELETE')?>
-                    </a>
                     <?if(in_array($workTask->status, ['work', 'wait'])):?>
                         <a id="stopWorkTask<?=$workTask->id?>" href="/work-tasks/stop/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_STOP')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
                             &nbsp;<?=$this->translate('L_TO_STOP')?>
+                        </a>
+                    <?endif?>
+                    <?if (in_array($workTask->status, ['wait', 'stop'])  && !strlen($workTask->session_name)):?>
+                        <a id="deleteWorkTask<?=$workTask->id?>" href="/work-tasks/delete/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
+                            &nbsp;<?=$this->translate('L_DELETE')?>
+                        </a>
+                    <?endif?>
+                    <?if(in_array($workTask->status, ['done'])):?>
+                        <a id="hideWorkTask<?=$workTask->id?>" href="/work-tasks/hide/id/<?=$workTask->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_HIDE')?> [<?=$task->getGroup()->name?>]&nbsp;<?=$task->name?> ?')">
+                            &nbsp;<?=$this->translate('L_HIDE')?>
                         </a>
                     <?endif?>
                     <?if($workTask->status == 'stop'):?>

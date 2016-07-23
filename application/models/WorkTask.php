@@ -50,6 +50,11 @@ class WorkTask extends Zend_Db_Table_Row
         $this->save();
     }
 
+    public function hide() {
+        $this->hide = '1';
+        $this->save();
+    }
+
     public function resume() {
         $this->status = 'wait';
         $this->save();
