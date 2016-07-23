@@ -157,4 +157,5 @@ return [
     'L_WT_PROCESS_STATUS_LOADHASHES' => 'Load found hashes id DB',
     'L_WT_PROCESS_STATUS_BUILDHASHLIST' => 'Hashlist building',
     'L_WT_PROCESS_STATUS_PREPAREDICTS' => 'Dicts prepare',
+    'L_CREATE_STOPPED' => 'Create stopped',
 ];

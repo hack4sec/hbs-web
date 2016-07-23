@@ -1,3 +1,4 @@
 dev
 
 hashlists statuses + real time update
+Checkbox and config setting "work_tasks_create_stopped_default" for create work tasks already stopped or started

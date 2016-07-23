@@ -47,6 +47,19 @@ class Forms_WorkTasks_Abstract extends Forms_Abstract
             ]
         );
         $this->getElement('tasks')->setRegisterInArrayValidator(false);
+
+        $this->addElement(
+            'checkbox',
+            'create_stopped',
+            [
+                'label' => $this->_t('L_CREATE_STOPPED'),
+                'decorators' => ['ViewHelper', 'Errors'],
+                'required' => true,
+                'checked' => Zend_Registry::get('config')->work_tasks_create_stopped_default,
+                'attribs' => ['class' => 'inputElements', 'id' => 'workTaskForm_create_stopped', 'onclick' => 'activeSalts()'],
+            ]
+        );
+
     }
 
 }

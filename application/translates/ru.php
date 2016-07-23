@@ -159,4 +159,5 @@ return [
     'L_WT_PROCESS_STATUS_LOADHASHES' => 'Загрузка найденных паролей',
     'L_WT_PROCESS_STATUS_BUILDHASHLIST' => 'Построение хеш-листа',
     'L_WT_PROCESS_STATUS_PREPAREDICTS' => 'Подготовка словарей',
+    'L_CREATE_STOPPED' => 'Создать остановленной',
 ];

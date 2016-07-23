@@ -33,6 +33,7 @@ class WorkTasks extends Common
                         'hashlist_id' => $hashlistId,
                         'task_id'     => $task,
                         'priority'    => (int)$data['priority'],
+                        'status'      => $data['create_stopped'] == '1' ? 'stop' : 'wait',
                     ]
                 )->save();
             }
