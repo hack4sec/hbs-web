@@ -1,3 +1,9 @@
+<?if ($this->err):?>
+    <script>
+        alert('<?=addslashes($this->translate($this->err))?>');
+    </script>
+<?endif?>
+
 <br/>
 <div class="buttonsBlock">
     <button onclick="location.href='/hashlists/add/'"><?=$this->translate('L_HASHLIST_ADD_2')?></button>&nbsp;&nbsp;&nbsp;

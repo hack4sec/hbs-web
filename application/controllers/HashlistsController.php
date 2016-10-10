@@ -16,6 +16,9 @@ class HashlistsController extends Zend_Controller_Action
     }
 
     public function indexAction() {
+        if ($this->_getParam('err')) {
+            $this->view->err = "L_HASHLIST_NOW_IN_USE";
+        }
         $this->view->list = $this->_model->fetchAll("!common_by_alg", "name ASC");
         $this->view->common_list = $this->_model->fetchAll("common_by_alg", "name ASC");
     }
@@ -46,8 +49,12 @@ class HashlistsController extends Zend_Controller_Action
     }
 
     public function deleteAction() {
-        $this->_model->get($this->_getParam('id'))->delete();
-        $this->redirect('/hashlists/');
+        if ($this->_model->getWorkHashlist() == $this->_getParam('id')) {
+            $this->redirect('/hashlists/?err=1');
+        } else {
+            $this->_model->get($this->_getParam('id'))->delete();
+            $this->redirect('/hashlists/');
+        }
     }
 
     public function inAction() {

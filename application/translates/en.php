@@ -163,4 +163,5 @@ return [
     'L_COMMON_LISTS' => 'Common lists (by algs)',
     'L_USERS_LISTS' => 'User`s lists',
     'L_STAT_BY_ALGS' => 'Statistic by algs',
+    'L_HASHLIST_NOW_IN_USE' => 'Current hashlist now in work',
 ];

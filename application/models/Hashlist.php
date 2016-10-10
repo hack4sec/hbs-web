@@ -25,12 +25,17 @@ class Hashlist extends Zend_Db_Table_Row
     }
 
     public function getAlg() {
-        $Algs = new Algs();
-        return $Algs->getList()[$this->alg_id];
+        return (new Algs())->getList()[$this->alg_id];
     }
 
     public function getWorkTasks() {
-        $WorkTasks = new WorkTasks();
-        return $WorkTasks->getWorkTasksByHashlist($this->id);
+        return (new WorkTasks())->getWorkTasksByHashlist($this->id);
+    }
+
+    public function delete() {
+        foreach((new WorkTasks())->getWorkTasksByHashlist($this->id) as $task) {
+            $task->delete();
+        }
+        parent::delete();
     }
 }
