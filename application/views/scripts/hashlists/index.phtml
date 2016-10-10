@@ -16,7 +16,7 @@
         <th><?=$this->translate('L_STATUS')?></th>
     </tr>
     <?foreach ($this->common_list as $hashlist):?>
-        <tr class="highlighted-hashlists">
+        <tr class="hashlist-highlighted <?if($hashlist->status != 'ready'):?>hashlist-notready<?endif?>">
             <td><?=$hashlist->name?></td>
             <td id="hashlist<?=$hashlist->id?>cracked">
                 <?=$hashlist->getCounts()['cracked']?> (<?=$hashlist->getCounts()['cracked_percents']?>%)
@@ -45,7 +45,7 @@
         <th colspan="6"><?=$this->translate('L_ACTIONS')?></th>
     </tr>
 <?foreach ($this->list as $hashlist):?>
-    <tr class="highlighted-hashlists">
+    <tr class="hashlist-highlighted <?if($hashlist->status != 'ready'):?>hashlist-notready<?endif?>">
         <td><?=$hashlist->name?></td>
         <td id="hashlist<?=$hashlist->id?>cracked">
             <?=$hashlist->getCounts()['cracked']?> (<?=$hashlist->getCounts()['cracked_percents']?>%)

@@ -134,6 +134,10 @@ input[type="text"], textarea {
     background-color: #F5F5F5;
 }
 
-.highlighted-hashlists:hover {
+.hashlist-highlighted:hover {
     background-color: #e6e6e6;
+}
+
+.hashlist-notready {
+    background-color: lightcoral;
 }
