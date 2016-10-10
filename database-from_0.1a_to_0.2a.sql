@@ -7,3 +7,4 @@ ALTER TABLE `task_works` ADD `hide` BOOLEAN NOT NULL DEFAULT FALSE AFTER `work_t
 ALTER TABLE `hashlists` ADD `cracked` BIGINT UNSIGNED NOT NULL DEFAULT '0' AFTER `alg_id`, ADD `uncracked` BIGINT UNSIGNED NOT NULL DEFAULT '0' AFTER `cracked`;
 ALTER TABLE `hashlists` ADD `have_salts` BOOLEAN NOT NULL DEFAULT FALSE AFTER `alg_id`;
 ALTER TABLE `hashlists` ADD `delimiter` VARCHAR(50) NULL DEFAULT ':' AFTER `have_salts`;
+ALTER TABLE `task_works` CHANGE `priority` `priority` INT(10) NOT NULL DEFAULT '0';
