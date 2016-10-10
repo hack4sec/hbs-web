@@ -133,10 +133,11 @@ function strrchr(haystack, needle) {
 
 function changeTaskPriority(taskId, priority) {
     priority = prompt(L_NEW_PRIORITY_VALUE, priority)
-    $.get("/work-tasks/change-task-priority/id/" + taskId + '/priority/' + priority, function (data) {
-        window.location.reload()
-    })
-
+    if (priority != null) {
+        $.get("/work-tasks/change-task-priority/id/" + taskId + '/priority/' + priority, function (data) {
+            window.location.reload()
+        })
+    }
 }
 
 function activeIncrement() {
