@@ -13,7 +13,7 @@
             <th><a id="deleteGroup<?=$group['id']?>" href="/dicts/delete-group/id/<?=$group['id']?>" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> <?=$group['name']?> ?')"><?=$this->translate('L_DELETE')?></a></th>
         </tr>
         <?foreach($group->getDicts() as $dict):?>
-            <tr>
+            <tr class="highlighted">
                 <td><?=$dict['name']?></td>
                 <td><?=$this->Bytes($dict['size'])?></td>
                 <td><?=number_format($dict['count'], 0, ".", " ")?> <?=$this->translate('L_WORDS')?></td>
