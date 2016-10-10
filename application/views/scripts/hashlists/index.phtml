@@ -3,7 +3,39 @@
     <button onclick="location.href='/hashlists/add/'"><?=$this->translate('L_HASHLIST_ADD_2')?></button>&nbsp;&nbsp;&nbsp;
 </div>
 <br/>
+
 <table class="workTable">
+    <tr>
+        <th colspan="5"><?=$this->translate('L_COMMON_LISTS')?></th>
+    </tr>
+    <tr>
+        <th><?=$this->translate('L_LIST_NAME')?></th>
+        <th><?=$this->translate('L_CRACKED')?></th>
+        <th><?=$this->translate('L_NON_CRACKED')?></th>
+        <th><?=$this->translate('L_ALG')?></th>
+        <th><?=$this->translate('L_STATUS')?></th>
+    </tr>
+    <?foreach ($this->common_list as $hashlist):?>
+        <tr>
+            <td><?=$hashlist->name?></td>
+            <td id="hashlist<?=$hashlist->id?>cracked">
+                <?=$hashlist->getCounts()['cracked']?> (<?=$hashlist->getCounts()['cracked_percents']?>%)
+            </td>
+            <td id="hashlist<?=$hashlist->id?>not_cracked">
+                <?=$hashlist->getCounts()['not_cracked']?> (<?=$hashlist->getCounts()['not_cracked_percents']?>%)
+            </td>
+            <td><?=$hashlist->getAlg()?></td>
+            <td id="hashlist<?=$hashlist->id?>status"><?=$this->translate('L_HASHLIST_STATUS_' . strtoupper($hashlist->status))?></td>
+        </tr>
+    <?endforeach;?>
+</table>
+
+<br/><br/>
+
+<table class="workTable">
+    <tr>
+        <th colspan="11"><?=$this->translate('L_USERS_LISTS')?></th>
+    </tr>
     <tr>
         <th><?=$this->translate('L_LIST_NAME')?></th>
         <th><?=$this->translate('L_CRACKED')?></th>

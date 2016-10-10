@@ -160,4 +160,6 @@ return [
     'L_CREATE_STOPPED' => 'Create stopped',
     'L_HIDE' => 'Hide',
     'L_WANT_HIDE' => 'Are you really want to hide',
+    'L_COMMON_LISTS' => 'Common lists (by algs)',
+    'L_USERS_LISTS' => 'User`s lists',
 ];

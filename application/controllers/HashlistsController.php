@@ -16,7 +16,8 @@ class HashlistsController extends Zend_Controller_Action
     }
 
     public function indexAction() {
-        $this->view->list = $this->_model->fetchAll(null, "name ASC");
+        $this->view->list = $this->_model->fetchAll("!common_by_alg", "name ASC");
+        $this->view->common_list = $this->_model->fetchAll("common_by_alg", "name ASC");
     }
 
     public function addAction() {
