@@ -10,6 +10,7 @@
 class Dicts extends Common
 {
     protected $_name = 'dicts';
+    protected $_rowClass = 'Dict';
 
     public function getByGroupId($id) {
         return $this->fetchAll("group_id = $id", "id ASC");
