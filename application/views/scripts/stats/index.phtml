@@ -45,3 +45,30 @@
     </tr>
 </table>
 <br/>
+<br/>
+<table class="workTable">
+    <tr>
+        <th colspan="4"><?=$this->translate('L_STAT_BY_ALGS')?></th>
+    </tr>
+    <tr>
+        <th><?=$this->translate('L_ALG')?>:</th>
+        <th><?=$this->translate('L_HASHES_ALL')?>:</th>
+        <th><?=$this->translate('L_CRACKED')?>:</th>
+        <th><?=$this->translate('L_NON_CRACKED')?>:</th>
+    </tr>
+    <?foreach ($this->stats['algs_stat_all'] as $alg => $allCount):?>
+        <?
+            $cracked = isset($this->stats['algs_stat_cracked'][$alg]) ? $this->stats['algs_stat_cracked'][$alg] : 0;
+            $notCracked = isset($this->stats['algs_stat_not_cracked'][$alg]) ? $this->stats['algs_stat_not_cracked'][$alg] : 0;
+            $percentCracked = round($cracked / ($allCount / 100));
+            $percentNotCracked = round($notCracked / ($allCount / 100));
+        ?>
+        <tr class="highlighted">
+            <td><?=$alg?></td>
+            <td><?=$allCount?></td>
+            <td><?=$cracked?> (<?=$percentCracked?>%)</td>
+            <td><?=$notCracked?> (<?=$percentNotCracked?>%)</td>
+        </tr>
+    <?endforeach;?>
+</table>
+<br/>

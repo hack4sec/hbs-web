@@ -1,6 +1,9 @@
 dev
 
-hashlists statuses + real time update
+Statistics by algs added
+Common hashlists (all hashes of separate alg)
+Highlight not ready hashlists
+Hashlists statuses + real time update
 Checkbox and config setting "work_tasks_create_stopped_default" for create work tasks already stopped or started
 Done work tasks can be hide
 User can delete only not started work task

@@ -138,6 +138,10 @@ input[type="text"], textarea {
     background-color: #e6e6e6;
 }
 
+.highlighted:hover {
+    background-color: #e6e6e6;
+}
+
 .hashlist-notready {
     background-color: lightcoral;
 }
