@@ -1,5 +1,10 @@
 dev
 
+User can delete hashlist which in work now
+Delete hashlist - delete work tasks of it
+Delete dict file when dict db-record delete
+Fixed bug of Esc key in priority change dialog cancel (was set priority to 0)
+Negative work tasks priority
 Statistics by algs added
 Common hashlists (all hashes of separate alg)
 Highlight not ready hashlists
