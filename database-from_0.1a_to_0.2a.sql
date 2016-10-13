@@ -8,3 +8,12 @@ ALTER TABLE `hashlists` ADD `cracked` BIGINT UNSIGNED NOT NULL DEFAULT '0' AFTER
 ALTER TABLE `hashlists` ADD `have_salts` BOOLEAN NOT NULL DEFAULT FALSE AFTER `alg_id`;
 ALTER TABLE `hashlists` ADD `delimiter` VARCHAR(50) NULL DEFAULT ':' AFTER `have_salts`;
 ALTER TABLE `task_works` CHANGE `priority` `priority` INT(10) NOT NULL DEFAULT '0';
+UPDATE `hashlists` SET parsed=1, status='ready';
+UPDATE `hashlists` hl, (SELECT COUNT(id) as cnt, hashlist_id FROM hashes WHERE cracked GROUP BY hashlist_id) h
+SET hl.cracked = h.cnt
+WHERE hl.id = h.hashlist_id;
+UPDATE `hashlists` hl, (SELECT COUNT(id) as cnt, hashlist_id FROM hashes WHERE !cracked GROUP BY hashlist_id) h
+SET hl.uncracked = h.cnt
+WHERE hl.id = h.hashlist_id;
+ALTER TABLE `hashlists` ADD `common_by_alg` BOOLEAN NOT NULL DEFAULT FALSE AFTER `when_loaded`;
+UPDATE `algs` SET `name` = 'md5(md5($pass))' WHERE `name`='md5(md5($pass)';
