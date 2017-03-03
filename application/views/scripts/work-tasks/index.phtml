@@ -119,14 +119,17 @@
                     <?=$workTask->hc_temp?>&deg;C
                 </td>
                 <td id="wt<?=$workTask->id?>hashes">
-                    <?if($workTask->status == 'work' and $workTask->getHcRechash() != 'n/a'):?>
+                    <?if($workTask->status == 'done' ):?>
+                        <span title="<?=number_format($workTask->uncracked_before, 0, ",", " ")?> / <?=number_format($workTask->uncracked_after, 0, ",", " ")?> / <?=number_format($workTask->uncracked_before-$workTask->uncracked_after, 0, ",", " ")?>">
+                            <nobr><?=number_format($workTask->uncracked_before-$workTask->uncracked_after, 0, ",", " ")?></nobr>
+                        </span>
+
+                    <?elseif ($workTask->getHcRechash() != 'n/a'):?>
                         <span title="<?=number_format($workTask->getHcRechash()[1], 0, ",", " ")?> / <?=number_format(($workTask->getHcRechash()[1] - $workTask->getHcRechash()[0]), 0, ",", " ")?> / <?=number_format($workTask->getHcRechash()[0], 0, ",", " ")?>">
                             <nobr><?=number_format($workTask->getHcRechash()[0], 0, ",", " ")?></nobr>
                         </span>
                     <?else:?>
-                        <span title="<?=number_format($workTask->uncracked_before, 0, ",", " ")?> / <?=number_format($workTask->uncracked_after, 0, ",", " ")?> / <?=number_format($workTask->uncracked_before-$workTask->uncracked_after, 0, ",", " ")?>">
-                            <nobr><?=number_format($workTask->uncracked_before-$workTask->uncracked_after, 0, ",", " ")?></nobr>
-                        </span>
+                        <span>n/a</span>
                     <?endif?>
                 </td>
                 <td <?if(strlen($workTask->stderr)):?>class="error"<?endif?>>
