@@ -1,3 +1,5 @@
+v0.3 dev:
+ Fixed bug when waiting tasks get status 'go stop', not 'stop' by stopping
 v0.2a:
  Out-files not remove from HDD and DB after parsing
  Fixed UTF8 passwords bug in already founded hashes procedure

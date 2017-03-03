@@ -53,7 +53,7 @@ class WorkTask extends Zend_Db_Table_Row
     }
 
     public function stop() {
-        $this->status = 'go_stop';
+        $this->status = ($this->status == 'work') ? 'go_stop' : 'stop';
         $this->save();
     }
 
