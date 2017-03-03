@@ -1,4 +1,6 @@
 v0.3 dev:
+ If loading dicts have not last symbol \n, hbs add it (if not - hybride dicts compiling will create joined words)
+ Fixed words count bug in dicts, when last \n increased words count by 1
  Fixed display hashes count bug when task has statuses between "Work" and "Done"
  Fixed bug when waiting tasks get status 'go stop', not 'stop' by stopping
 v0.2a:

@@ -49,9 +49,21 @@ class Dicts extends Common
         unlink("{$config->paths->storage->tmp}/{$data['filename']}");
     }
 
+    private function _add10InFileEndIfNeed($path) {
+        $fh = fopen($path, 'a+');
+        fseek($fh, -1, SEEK_END);
+        if (fread($fh, 1) != "\n") {
+            fseek($fh, 0, SEEK_END);
+            fwrite($fh, "\n");
+        }
+        fclose($fh);
+    }
+
     private function _addDict($tmpPath, $data) {
         $config = Zend_Registry::get('config');
         $hash = md5(time() . rand(0, 1000000));
+
+        $this->_add10InFileEndIfNeed("{$config->paths->storage->tmp}/{$tmpPath}");
 
         copy("{$config->paths->storage->tmp}/{$tmpPath}", "{$config->paths->storage->dicts}/{$hash}.dict");
 
@@ -61,7 +73,6 @@ class Dicts extends Common
             $tmpData = fread($tmpFh, 1024);
             $linesCount += substr_count($tmpData, "\n");
         }
-        $linesCount += 1;
         fclose($tmpFh);
 
         $dict = $this->createRow(
