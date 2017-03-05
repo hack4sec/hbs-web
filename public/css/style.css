@@ -109,11 +109,11 @@ body {
 }
 
 .taskwait {
-    background-color: #fcefa1 !important;
+    background-color: #fcefa1;
 }
 
 .taskwork {
-    background-color: lightgreen !important;
+    background-color: lightgreen;
 }
 
 .taskstop {
