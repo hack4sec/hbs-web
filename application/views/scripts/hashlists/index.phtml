@@ -20,6 +20,7 @@
         <th><?=$this->translate('L_NON_CRACKED')?></th>
         <th><?=$this->translate('L_ALG')?></th>
         <th><?=$this->translate('L_STATUS')?></th>
+        <th colspan="2"><?=$this->translate('L_ACTIONS')?></th>
     </tr>
     <?foreach ($this->common_list as $hashlist):?>
         <tr class="hashlist-highlighted <?if($hashlist->status != 'ready'):?>hashlist-notready<?endif?>">
@@ -32,6 +33,8 @@
             </td>
             <td><?=$hashlist->getAlg()?></td>
             <td id="hashlist<?=$hashlist->id?>status"><?=$this->translate('L_HASHLIST_STATUS_' . strtoupper($hashlist->status))?></td>
+            <td><a id="deleteHashlist<?=$hashlist->id?>" href="/hashlists/delete/id/<?=$hashlist->id?>/" onclick="return confirm('<?=$this->translate('L_WANT_DELETE')?> <?=$hashlist->name?>?')"><?=$this->translate('L_DELETE')?></a></td>
+            <td><a href="/hashlists/import/id/<?=$hashlist->id?>/"><?=$this->translate('L_LOAD_OUT')?></a></td>
         </tr>
     <?endforeach;?>
 </table>
