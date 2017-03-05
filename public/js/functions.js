@@ -213,7 +213,7 @@ function refreshCurrentWorkTaskData() {
             jQuery('#wt' + $.cookie('getCurrentWorkTaskId') + 'status').html(data.status)
             jQuery('#wt' + $.cookie('getCurrentWorkTaskId') + 'process').html(data.process)
             jQuery('#wt' + $.cookie('getCurrentWorkTaskId') + 'progress').html(data.progress)
-            jQuery('#wt' + $.cookie('getCurrentWorkTaskId') + 'temp').html(data.temp)
+            jQuery('#wt' + $.cookie('getCurrentWorkTaskId') + 'temp').html(data.temp + '&deg;C')
 
             if (data.timeAll == 'n/a') {
                 jQuery('#wt' + $.cookie('getCurrentWorkTaskId') + 'time').html(data.timeAll)
