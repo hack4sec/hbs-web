@@ -34,8 +34,7 @@ class WorkTask extends Zend_Db_Table_Row
     public function getTime() {
         if (strlen($this->hc_speed) and strlen($this->hc_progress)) {
             list($candidates, $msspeed) = array_map('trim', explode("\t", $this->hc_speed));
-            $speed = round($candidates / $msspeed * 1000);
-            if (!$speed) {
+            if (!$msspeed || !($speed = round($candidates / $msspeed * 1000))) {
                 return 'n/a';
             }
             list($current, $all) = array_map('trim', explode("\t", $this->hc_progress));
