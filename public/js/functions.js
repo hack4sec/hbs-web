@@ -305,7 +305,14 @@ function refreshHashlistsData() {
             var ncPercents = data[id]['cracked'] / (data[id]['not_cracked'] + data[id]['cracked']) * 100;
             $("#hashlist" + id + "cracked").html(data[id]['cracked'] + " (" + data[id]['cracked_percents'] + "%)")
             $("#hashlist" + id + "not_cracked").html(data[id]['not_cracked'] + " (" + data[id]['not_cracked_percents'] + "%)")
-            $("#hashlist" + id + "status").html(data[id]['status'])
+            $("#hashlist" + id + "status").html(data[id]['status_title'])
+
+            if (data[id]['status'] == 'ready' && $("#trHashlist" + id).hasClass('hashlist-notready')) {
+                $("#trHashlist" + id).removeClass('hashlist-notready')
+            }
+            if (data[id]['status'] != 'ready' && !$("#trHashlist" + id).hasClass('hashlist-notready')) {
+                $("#trHashlist" + id).addClass('hashlist-notready')
+            }
         }
     });
 }

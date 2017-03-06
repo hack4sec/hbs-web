@@ -120,7 +120,8 @@ class HashlistsController extends Zend_Controller_Action
                 'not_cracked' => $hashlist->getCounts()['not_cracked'],
                 'cracked_percents' => $hashlist->getCounts()['cracked_percents'],
                 'not_cracked_percents' => $hashlist->getCounts()['not_cracked_percents'],
-                'status' => $t->translate('L_HASHLIST_STATUS_' . strtoupper($hashlist->status))
+                'status_title' => $t->translate('L_HASHLIST_STATUS_' . strtoupper($hashlist->status)),
+                'status' => $hashlist->status,
             ];
         }
 
