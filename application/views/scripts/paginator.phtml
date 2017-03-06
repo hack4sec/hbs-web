@@ -1,0 +1,32 @@
+<br />
+<?php if ($this->pageCount): ?>
+
+    <?php if (isset($this->previous)): ?>
+        <a href="<?php echo $this->url(array('page' => $this->previous)); ?>" class="usualFont">
+            &lt;&lt;
+        </a>
+    <?else:?>
+        <span class="usualFont">
+            &lt;&lt;
+        </span>
+    <?php endif; ?>
+    &nbsp;
+    <!-- Нумерованные ссылки на страницы -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+            <a href="<?php echo $this->url(array('page' => $page)); ?>"  class="usualFont"><?php echo $page; ?></a>
+        <?php else: ?>
+            <span class="usualFont"><?php echo $page; ?></span>
+        <?php endif; ?>
+        &nbsp;
+    <?php endforeach; ?>
+
+    <?php if (isset($this->next)): ?>
+        <a href="<?php echo $this->url(array('page' => $this->next)); ?>"  class="usualFont">&gt;&gt;</a>
+    <?else:?>
+    <span class="usualFont">
+            &gt;&gt;
+    </span>
+    <?endif; ?>
+<?php endif; ?>
+

@@ -44,12 +44,12 @@ body {
     text-align: left;
     width: 90%;
 }
-.filtersBlock {
+.filtersBlock, .massActionsBlock {
     width:90%;
     margin: 0;
     padding: 0;
 }
-.filtersBlock td {
+.filtersBlock td, .massActionsBlock td {
     width:100%;
     background-color: #F5F5F5;
     border: 1px solid #000000;
@@ -58,7 +58,7 @@ body {
     font-size: 11pt;
     padding-left: 5px;
 }
-.filtersBlock td.title {
+.filtersBlock td.title, .massActionsBlock td.title {
     background-color: #B0C4DE;
     vertical-align: top;
     border-top: 1px solid #000000;
@@ -93,6 +93,12 @@ body {
 }
 .workTable td {
     border: 1px solid #000000;
+    vert-align: top;
+    font-family: Verdana;
+    font-size: 9pt;
+}
+
+.usualFont {
     vert-align: top;
     font-family: Verdana;
     font-size: 9pt;
@@ -144,4 +150,10 @@ input[type="text"], textarea {
 
 .hashlist-notready {
     background-color: lightcoral;
+}
+.massActionsCol {
+    width:8px;
+}
+.massActionsBlock {
+    display: none;
 }

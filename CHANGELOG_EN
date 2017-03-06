@@ -1,4 +1,5 @@
 v0.3 dev:
+ Logs view interface
  Fixed divizion on zero in speed count mechanism
  Common hashlists can be deleted (for rebuild) and downloaded
  If loading dicts have not last symbol \n, hbs add it (if not - hybride dicts compiling will create joined words)

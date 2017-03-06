@@ -1,0 +1,35 @@
+<br/>
+
+<form method="GET" action="/logs/index/page/1/" id="log-filter-form">
+<table class="filtersBlock">
+<tr>
+    <td>
+        <?=$this->translate('L_FILTER_BY_MODULE')?>:&nbsp;
+        <select name="moduleFilter" onchange="jQuery('#log-filter-form').submit()">
+            <option name="">-------</option>
+            <? foreach (['main','worker','database','finderinsidepro','hashlist_common_loader','hashlist_loader','result_parser'] as $module):?>
+                <option value="<?=$module?>" <?if ($this->module == $module):?>selected<?endif?>><?=$this->translate("L_{$module}_MODUE")?></option>
+            <? endforeach;?>
+        </select>
+    </td>
+</tr>
+</table>
+</form>
+<br/>
+
+<table  class="workTable">
+    <tr>
+        <th><?=$this->translate('L_MODULE')?></th>
+        <th><?=$this->translate('L_TIME')?></th>
+        <th><?=$this->translate('L_MESSAGE')?></th>
+    </tr>
+    <? foreach ($this->paginator as $item):?>
+        <tr>
+            <td><?=strtoupper($item->module)?></td>
+            <td><?=date('H:i:s d-m-Y', $item->timestamp)?></td>
+            <td><?=$item->message?></td>
+        </tr>
+    <?endforeach;?>
+</table>
+<br/>
+<?=$this->paginator?>
