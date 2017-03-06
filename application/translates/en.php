@@ -179,4 +179,5 @@ return [
     'L_MASS_ACTIONS' => 'Mass actions',
     'L_SET_STATUS' => 'Set status',
     'L_STOP' => 'Stop',
+    'L_MASS_ACTIONS_WORK_TASKS_CONFIRM' => 'Are you sure about this action?',
 ];

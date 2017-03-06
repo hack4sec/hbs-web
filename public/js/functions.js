@@ -326,6 +326,8 @@ function massActionsToggle() {
 }
 
 function massAction(action) {
-    jQuery('#mass-action-name').val(action)
-    jQuery('#massActionsForm').submit()
+    if (confirm(L_MASS_ACTIONS_WORK_TASKS_CONFIRM)) {
+        jQuery('#mass-action-name').val(action)
+        jQuery('#massActionsForm').submit()
+    }
 }

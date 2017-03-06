@@ -181,4 +181,5 @@ return [
     'L_MASS_ACTIONS' => 'Массовые действия',
     'L_SET_STATUS' => 'Установить статус',
     'L_STOP' => 'Остановить',
+    'L_MASS_ACTIONS_WORK_TASKS_CONFIRM' => 'Вы уверены что хотите выполнить это действие?'
 ];
