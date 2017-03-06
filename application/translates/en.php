@@ -180,4 +180,6 @@ return [
     'L_SET_STATUS' => 'Set status',
     'L_STOP' => 'Stop',
     'L_MASS_ACTIONS_WORK_TASKS_CONFIRM' => 'Are you sure about this action?',
+    'L_OTHER_HASHLISTS_IT_ALG_HAS_SALTS' => 'Other hashlists with this alg has salts',
+    'L_OTHER_HASHLISTS_IT_ALG_HAS_NOT_SALTS' => 'Other hashlists with this alg has not salts',
 ];

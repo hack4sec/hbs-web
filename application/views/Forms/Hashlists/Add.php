@@ -36,6 +36,9 @@ class Forms_Hashlists_Add extends Forms_Hashlists_Abstract {
                 'required' => true,
                 'attribs' => ['class' => 'inputElements', 'id' => 'hashlistsForm_have_salts', 'onclick' => 'activeSalts()'],
                 'value' => ':',
+                'validators' => [
+                    new Forms_Validate_Hashlists_HaveSalts,
+                ],
             ]
         );
 

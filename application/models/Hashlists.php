@@ -188,4 +188,14 @@ class Hashlists extends Common
         $WorkTasks = new WorkTasks();
         return $WorkTasks->get($WorkTasks->getCurrentWorkTaskId())->hashlist_id;
     }
+
+    public function isThisAlgHasSalts($algId) {
+        $algId = (int)$algId;
+        return (bool)$this->getAdapter()->fetchOne("SELECT id FROM {$this->_name} WHERE alg_id = $algId AND have_salts=1");
+    }
+
+    public function isThisAlgHasNotSalts($algId) {
+        $algId = (int)$algId;
+        return (bool)$this->getAdapter()->fetchOne("SELECT id FROM {$this->_name} WHERE alg_id = $algId AND have_salts=0");
+    }
 }

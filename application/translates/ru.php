@@ -181,5 +181,7 @@ return [
     'L_MASS_ACTIONS' => 'Массовые действия',
     'L_SET_STATUS' => 'Установить статус',
     'L_STOP' => 'Остановить',
-    'L_MASS_ACTIONS_WORK_TASKS_CONFIRM' => 'Вы уверены что хотите выполнить это действие?'
+    'L_MASS_ACTIONS_WORK_TASKS_CONFIRM' => 'Вы уверены что хотите выполнить это действие?',
+    'L_OTHER_HASHLISTS_IT_ALG_HAS_SALTS' => 'Другие хеш-листы с этим алгоритмом имеют соли',
+    'L_OTHER_HASHLISTS_IT_ALG_HAS_NOT_SALTS' => 'Другие хеш-листы с этим алгоритмом не имеют солей',
 ];
