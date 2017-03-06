@@ -309,3 +309,16 @@ function refreshHashlistsData() {
         }
     });
 }
+
+function massActionsToggle() {
+    if(jQuery('input[name="mass[]"]:checked').length) {
+        jQuery('#massActionsBlock').show()
+    } else {
+        jQuery('#massActionsBlock').hide()
+    }
+}
+
+function massAction(action) {
+    jQuery('#mass-action-name').val(action)
+    jQuery('#massActionsForm').submit()
+}

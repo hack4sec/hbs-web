@@ -1,4 +1,5 @@
 v0.3 dev:
+ Mass actions with work tasks
  Logs view interface
  Fixed divizion on zero in speed count mechanism
  Common hashlists can be deleted (for rebuild) and downloaded

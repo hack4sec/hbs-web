@@ -38,12 +38,32 @@
 
     </tr>
 </table>
+<br/>
+<table class="massActionsBlock" id="massActionsBlock">
+    <tr>
+        <td class="title">
+            <b><?=$this->translate('L_MASS_ACTIONS')?>: </b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="#" onclick="massAction('stop');return false;"><?=$this->translate('L_STOP')?></a>&nbsp;
+            <a href="#" onclick="massAction('start');return false;"><?=$this->translate('L_START')?>/<?=$this->translate('L_RESUME')?></a>&nbsp;
+            <a href="#" onclick="massAction('delete');return false;"><?=$this->translate('L_DEL')?></a>&nbsp;
+            <a href="#" onclick="massAction('hide');return false;"><?=$this->translate('L_HIDE')?></a>&nbsp;
+        </td>
+    </tr>
+</table>
+
 
 
 <br/>
 <div id="workTasksMainContent">
+    <form id="massActionsForm" method="POST" action="/work-tasks/mass-actions/">
+        <input type="hidden" name="action-name" id="mass-action-name" value="">
     <table id="workTasksTable" class="workTable" cellpadding="0" cellspacing="0">
         <tr>
+            <th class="massActionsCol">&nbsp;</th>
             <th>#</th>
             <th><?=$this->translate('L_HASH_LIST')?></th>
             <th><?=$this->translate('L_TASK')?></th>
@@ -71,6 +91,9 @@
                  highlighted
                  "
             >
+                <td class="massActionsCol">
+                    <input type="checkbox" name="mass[]" value="<?=$workTask->id?>" onclick="massActionsToggle()"/>
+                </td>
                 <td><?=$workTask->id?></td>
                 <td><?=$this->hashlistsModel->get($workTask->hashlist_id)->name?></td>
                 <td>
@@ -168,6 +191,7 @@
             </tr>
         <?endforeach;?>
     </table>
+    </form>
 </div>
 
 <script>

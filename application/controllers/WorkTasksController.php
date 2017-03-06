@@ -138,4 +138,26 @@ class WorkTasksController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
     }
+
+    public function massActionsAction() {
+        foreach ($this->_getParam('mass') as $id) {
+            switch ($this->_getParam('action-name')) {
+                case 'stop':
+                    $this->_model->get($id)->stop();
+                    break;
+                case 'start':
+                    $this->_model->get($id)->resume();
+                    break;
+                case 'hide':
+                    $this->_model->get($id)->hide();
+                    break;
+                case 'delete':
+                    $this->_model->get($id)->delete();
+                    break;
+            }
+
+        }
+
+        $this->redirect('/work-tasks/');
+    }
 }
