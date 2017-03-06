@@ -119,7 +119,22 @@ class Hashlists extends Common
         $config = Zend_Registry::get('config');
 
         $randomName = md5(time() . rand(1, 1000000));
-        rename("{$config->paths->storage->tmp}/{$data['filepath']}", "{$config->paths->storage->tmp}/$randomName");
+        if (substr($data['filepath'], -4) == '.zip') {
+            $zip = new ZipArchive();
+            $zip->open("{$config->paths->storage->tmp}/{$data['filepath']}");
+            $file = $zip->getNameIndex(0);
+
+            $tmpDir = md5(time() . rand(0, 9999999));
+            mkdir("{$config->paths->storage->tmp}/$tmpDir");
+
+            $zip->extractTo("{$config->paths->storage->tmp}/$tmpDir");
+
+            rename("{$config->paths->storage->tmp}/$tmpDir/$file", "{$config->paths->storage->tmp}/$randomName");
+
+            Utils::deleteDir("{$config->paths->storage->tmp}/$tmpDir");
+        } else {#TODO здесь сделать вывод ошибок, по-любому они могут возникнуть
+            rename("{$config->paths->storage->tmp}/{$data['filepath']}", "{$config->paths->storage->tmp}/$randomName");
+        }
 
         $list = $this->createRow([
             'name' => $data['name'],
@@ -137,7 +152,24 @@ class Hashlists extends Common
         $list->parsed = 0;
         $config = Zend_Registry::get('config');
         $randomName = md5(time() . rand(1, 1000000));
-        rename("{$config->paths->storage->tmp}/{$data['filepath']}", "{$config->paths->storage->tmp}/$randomName");
+
+        if (substr($data['filepath'], -4) == '.zip') {
+            $zip = new ZipArchive();
+            $zip->open("{$config->paths->storage->tmp}/{$data['filepath']}");
+            $file = $zip->getNameIndex(0);
+
+            $tmpDir = md5(time() . rand(0, 9999999));
+            mkdir("{$config->paths->storage->tmp}/$tmpDir");
+
+            $zip->extractTo("{$config->paths->storage->tmp}/$tmpDir");
+
+            rename("{$config->paths->storage->tmp}/$tmpDir/$file", "{$config->paths->storage->tmp}/$randomName");
+
+            Utils::deleteDir("{$config->paths->storage->tmp}/$tmpDir");
+        } else {#TODO здесь сделать вывод ошибок, по-любому они могут возникнуть
+            rename("{$config->paths->storage->tmp}/{$data['filepath']}", "{$config->paths->storage->tmp}/$randomName");
+        }
+
         $list->tmp_path = "{$config->paths->storage->tmp}/$randomName";
         $list->save();
     }

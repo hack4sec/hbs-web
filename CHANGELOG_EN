@@ -1,4 +1,5 @@
 v0.3 dev:
+ Possible hashlists upload in zip-archives
  Mass actions with work tasks
  Logs view interface
  Fixed divizion on zero in speed count mechanism
