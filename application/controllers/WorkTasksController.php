@@ -142,6 +142,11 @@ class WorkTasksController extends Zend_Controller_Action
     public function massActionsAction() {
         foreach ($this->_getParam('mass') as $id) {
             switch ($this->_getParam('action-name')) {
+                case 'priority':
+                    $task = $this->_model->get($id);
+                    $task->priority = (int)$this->_getParam('mass-priority');
+                    $task->save();
+                    break;
                 case 'stop':
                     $this->_model->get($id)->stop();
                     break;
