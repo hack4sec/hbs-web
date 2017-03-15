@@ -326,8 +326,21 @@ function massActionsToggle() {
 }
 
 function massAction(action) {
-    if (confirm(L_MASS_ACTIONS_WORK_TASKS_CONFIRM)) {
-        jQuery('#mass-action-name').val(action)
-        jQuery('#massActionsForm').submit()
+    if (action == 'priority') {
+        priority = prompt(L_NEW_PRIORITY_VALUE)
+        if (priority == null) {
+            return false
+        }
+        jQuery('#mass-priority').val(priority)
+    } else if (!confirm(L_MASS_ACTIONS_WORK_TASKS_CONFIRM)) {
+        return false
     }
+    jQuery('#mass-action-name').val(action)
+    jQuery('#massActionsForm').submit()
+}
+
+function checkAllWorkTasks(el) {
+    jQuery('input[name="mass[]"]').each(function(){
+        $(this).prop('checked', jQuery('#massCheckBox').prop('checked'));
+    })
 }
