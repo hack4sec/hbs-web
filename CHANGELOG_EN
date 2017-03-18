@@ -1,11 +1,11 @@
-v0.3 dev:
+v0.3:
  In hashlists add form added salts validations in other hashlists of this alg
  Possible hashlists upload in zip-archives
  Mass actions with work tasks
  Logs view interface
- Fixed divizion on zero in speed count mechanism
  Common hashlists can be deleted (for rebuild) and downloaded
  If loading dicts have not last symbol \n, hbs add it (if not - hybride dicts compiling will create joined words)
+ Fixed divizion on zero in speed count mechanism
  Fixed words count bug in dicts, when last \n increased words count by 1
  Fixed display hashes count bug when task has statuses between "Work" and "Done"
  Fixed bug when waiting tasks get status 'go stop', not 'stop' by stopping
